@@ -28,21 +28,17 @@ public class ShelfService extends EntityService<ShelfRepository ,Shelf> implemen
 	@Override
 	public void updateProductOnShelfs(long productId, List<Long> shelfsOld, List<Long> shelfsNew) {
 		for (Long shelfId : shelfsOld) {
-			if (shelfId > 0) {
-				Shelf shelf = repository.getEntity(shelfId);
-				if (shelfsNew.indexOf(shelfId) == -1) {
-					shelf.setProductId((long)0);
-					repository.editEntity(shelf);
-				}
+			Shelf shelf = repository.getEntity(shelfId);
+			if (shelfsNew.indexOf(shelfId) == -1) {
+				shelf.setProductId((long)0);
+				repository.editEntity(shelf);
 			}
 		}
 		for (Long shelfId : shelfsNew) {
-			if (shelfId > 0) {
-				Shelf shelf = repository.getEntity(shelfId);
-				if (shelfsOld.indexOf(shelfId) == -1) {
-					shelf.setProductId(productId);
-					repository.editEntity(shelf);
-				}
+			Shelf shelf = repository.getEntity(shelfId);
+			if (shelfsOld.indexOf(shelfId) == -1) {
+				shelf.setProductId(productId);
+				repository.editEntity(shelf);
 			}
 		}
 	}

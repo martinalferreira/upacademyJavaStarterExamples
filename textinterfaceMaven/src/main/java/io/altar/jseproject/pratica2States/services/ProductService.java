@@ -28,7 +28,6 @@ public class ProductService extends EntityService<ProductRepository ,Product> im
 	public void update(Product product) {
 		Product oldProduct = repository.getEntity(product.getId());
 		if (!oldProduct.getShelvesIds().equals(product.getShelvesIds())) {
-			System.out.println(product.getShelvesIds());
 			SHELF_SERVICE.updateProductOnShelfs(product.getId(),oldProduct.getShelvesIds(),product.getShelvesIds());
 		}
 		repository.editEntity(product);
